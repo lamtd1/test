@@ -5,6 +5,7 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     plan: free
+    healthCheckPath: /api/v1/health
     envVars:
       - key: GOOGLE_API_KEY
         sync: false

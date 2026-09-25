@@ -39,7 +39,7 @@
 | Backend | FastAPI + Python 3.11+ |
 | Frontend | React + Vite + TypeScript + Tailwind |
 | Database | PostgreSQL + pgvector (khoảng cách bằng haversine, không cần PostGIS) |
-| DevOps | Docker + GitHub Actions + Railway |
+| DevOps | Docker + GitHub Actions + Render (backend) + Vercel (frontend) |
 
 > **Prototype hiện tại chạy trên phiên bản rút gọn của stack trên** — xem "Quick Start"
 > ngay dưới đây để biết khác biệt (SQLite thay Postgres/pgvector, Gemini thay GPT-4o,
@@ -89,7 +89,8 @@ Khai báo đầy đủ trong `.env.example`, **không chứa giá trị thật**
 |---|---|
 | `DATABASE_URL` | Chuỗi kết nối PostgreSQL (cần extension `vector`) |
 | `JWT_SECRET` / `JWT_EXPIRE_MINUTES` | Secret ký token · hạn token (mặc định 120) |
-| `OPENAI_API_KEY` | Key gọi GPT-4o — chỉ đặt trong `.env` local hoặc Railway Variables |
+| `OPENAI_API_KEY` | Key gọi GPT-4o — chỉ đặt trong `.env` local hoặc Render Environment |
+| `CORS_ORIGINS` | Danh sách origin frontend được phép gọi API, phân tách bằng dấu phẩy (backend, mặc định `http://localhost:5173,http://127.0.0.1:5173`) |
 | `LLM_MODEL_DISCOVERY` | Model cho Discovery node (mặc định `gpt-4o`) |
 | `LLM_MODEL_EXPLAIN` | Model sinh reasons/tradeoffs (mặc định `gpt-4o-mini`) |
 | `EMBEDDING_MODEL` | Model embedding mô tả căn, chạy offline (mặc định `text-embedding-3-small`) |
@@ -98,7 +99,8 @@ Khai báo đầy đủ trong `.env.example`, **không chứa giá trị thật**
 | `FIN_LTV_MAX` / `FIN_DSR_MAX` | Tham số tài chính, cấu hình được (0.70 / 0.40) |
 | `FIN_RATE_PROMO` / `FIN_RATE_FLOAT` | Lãi ưu đãi / thả nổi (9% / 14% — mặt bằng 9/2026) |
 | `SESSION_RETENTION_DAYS` | Hạn giữ dữ liệu phiên (mặc định 90) |
-| `PUBLIC_BASE_URL` | Domain public trên Railway, dùng cho link gửi khách |
+| `PUBLIC_BASE_URL` | Domain public trên Render, dùng cho link gửi khách |
+| `VITE_API_URL` | Base URL của backend API mà frontend gọi tới (frontend/Vercel, ví dụ `https://<service>.onrender.com/api/v1`) |
 
 ## Deploy (Render + Vercel)
 
