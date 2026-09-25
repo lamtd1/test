@@ -100,6 +100,36 @@ Khai báo đầy đủ trong `.env.example`, **không chứa giá trị thật**
 | `SESSION_RETENTION_DAYS` | Hạn giữ dữ liệu phiên (mặc định 90) |
 | `PUBLIC_BASE_URL` | Domain public trên Railway, dùng cho link gửi khách |
 
+## Deploy (Render + Vercel)
+
+Push-to-deploy is wired via each platform's native GitHub integration —
+GitHub Actions only runs the CI gate (`.github/workflows/ci.yml`), it does
+not perform the deploys itself.
+
+**Backend (Render), one-time setup:**
+1. Render dashboard → New → Blueprint → connect `lamtd1/test`. Render reads
+   `render.yaml` and creates the `homematch-api` web service automatically.
+2. In the service's Environment tab, set the secrets marked `sync: false`
+   in `render.yaml`: `GOOGLE_API_KEY` (your Gemini key) and `CORS_ORIGINS`
+   (leave blank until Vercel gives you a URL in step 2 below, then come
+   back and fill it in, comma-separated if you have both a production and
+   a preview domain).
+3. Every push to `main` redeploys automatically; the container reseeds
+   SQLite from `data/*.csv` on every boot (see
+   `docs/adr/0004-sqlite-reseed-on-render.md`), so demo data is always
+   fresh, not persisted between deploys.
+
+**Frontend (Vercel), one-time setup:**
+1. Vercel dashboard → Add New → Project → import `lamtd1/test`, set Root
+   Directory to `web`. Vercel auto-detects the Vite build.
+2. Project → Settings → Environment Variables → add `VITE_API_URL` =
+   `https://<your-render-service>.onrender.com/api/v1`.
+3. Every push to `main` deploys to production; every PR gets a preview
+   URL automatically.
+4. Copy the resulting Vercel production URL back into Render's
+   `CORS_ORIGINS` env var (step 2 above) so the backend accepts requests
+   from it.
+
 ## Project Structure
 
 ```
