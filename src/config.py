@@ -4,6 +4,15 @@ from pydantic import Field
 from pydantic_settings import BaseSettings
 
 
+_DEFAULT_CORS_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
+
+
+def parse_cors_origins(raw: str | None) -> list[str]:
+    if not raw or not raw.strip():
+        return list(_DEFAULT_CORS_ORIGINS)
+    return [origin.strip() for origin in raw.split(",") if origin.strip()]
+
+
 class Settings(BaseSettings):
     app_name: str = "ai-agent"
     app_env: Literal["development", "staging", "production"] = "development"
@@ -24,12 +33,18 @@ class Settings(BaseSettings):
     google_api_key: str = Field(default="", alias="GOOGLE_API_KEY")
     llm_model_discovery: str = "gemini-flash-lite-latest"
 
+    cors_origins_raw: str = Field(default="", alias="CORS_ORIGINS")
+
     model_config = {
         "env_file": ".env",
         "env_file_encoding": "utf-8",
         "case_sensitive": False,
         "extra": "ignore",
     }
+
+    @property
+    def cors_origins(self) -> list[str]:
+        return parse_cors_origins(self.cors_origins_raw)
 
 
 settings = Settings()
