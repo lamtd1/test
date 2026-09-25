@@ -86,7 +86,7 @@ def test_airiness_score_ignores_null_fields(conn):
         """INSERT INTO unit
            (unit_id, project_id, floor, total_floors, area_sqm, bedrooms, bathrooms,
             balcony_dir, n_open_sides, view_type, price_vnd, status, is_synthetic, created_at)
-           VALUES ('A-04', 'proj-a', 10, 30, 68, 2, 2, NULL, NULL, NULL, 2_600_000_000, 'available', 1, '2026-01-01')"""
+           VALUES ('A-04', 'proj-a', 10, 30, 68, 2, 2, NULL, NULL, NULL, 2600000000, 'available', 1, '2026-01-01')"""
     )
     conn.execute("INSERT INTO unit_business (unit_id, business_priority, days_on_market) VALUES ('A-04', 0.5, 10)")
     conn.commit()
