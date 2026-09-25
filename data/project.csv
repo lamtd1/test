@@ -1,0 +1,7 @@
+project_id,name,developer,district,ward,lat,lng,geo_source,handover_date,amenities,is_synthetic
+vinhomes-smart-city,Vinhomes Smart City,Vingroup,Nam Từ Liêm,Tây Mỗ,21.0139,105.7442,manual,,pool|gym|park|school,1
+the-zei,The Zei,MIK Group,Nam Từ Liêm,Mỹ Đình 1,21.0068,105.7623,manual,,pool|gym,1
+roman-plaza,Roman Plaza,Hải Phát,Nam Từ Liêm,Đại Mỗ,20.9975,105.7757,manual,,pool|gym|park,1
+discovery-complex,Discovery Complex,Kinh Đô TCI,Cầu Giấy,Cầu Giấy,21.0197,105.7827,manual,,gym,1
+indochina-plaza-hanoi,Indochina Plaza Hanoi,Indochina Capital,Cầu Giấy,Dịch Vọng Hậu,21.0296,105.7844,manual,,pool|gym,1
+d-le-roi-soleil,D' Le Roi Soleil,Tân Hoàng Minh,Cầu Giấy,Quan Hoa,21.0281,105.8007,manual,2027-06-01,pool|gym|park,1
