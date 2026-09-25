@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: homematch-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: CORS_ORIGINS
+        sync: false
+      - key: APP_ENV
+        value: production
