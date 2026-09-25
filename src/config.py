@@ -3,14 +3,13 @@ from typing import Literal
 from pydantic import Field
 from pydantic_settings import BaseSettings
 
-
 _DEFAULT_CORS_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 
 def parse_cors_origins(raw: str | None) -> list[str]:
     if not raw or not raw.strip():
         return list(_DEFAULT_CORS_ORIGINS)
-    return [origin.strip() for origin in raw.split(",") if origin.strip()]
+    return [origin.strip().rstrip("/") for origin in raw.split(",") if origin.strip()]
 
 
 class Settings(BaseSettings):

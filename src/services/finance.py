@@ -18,12 +18,12 @@ Toàn bộ con số trong prototype chỉ mang tính tham khảo, không dùng �
 """
 
 from dataclasses import dataclass, replace
-from enum import Enum
+from enum import StrEnum
 
 from src.models.envelop import Envelope, LeverageScenario
 
 
-class Method(str, Enum):
+class Method(StrEnum):
     EQUAL_PRINCIPAL = "du_no_giam_dan"  # gốc chia đều, lãi tính trên dư nợ còn lại (phổ biến ở VN)
     ANNUITY = "tra_gop_deu"             # tổng tiền trả mỗi tháng bằng nhau (trong cùng mức lãi)
 

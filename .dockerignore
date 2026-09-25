@@ -1,0 +1,14 @@
+.env
+.env.*
+.venv/
+venv/
+web/
+.git/
+data/*.db
+data/*.sqlite3
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.worktrees/
+.superpowers/
+node_modules/
