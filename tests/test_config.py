@@ -33,3 +33,15 @@ def test_settings_reads_cors_origins_from_env(monkeypatch):
     monkeypatch.setenv("CORS_ORIGINS", "https://example.com")
     settings = Settings()
     assert settings.cors_origins == ["https://example.com"]
+
+
+def test_settings_reads_cors_origin_regex_from_env(monkeypatch):
+    monkeypatch.setenv("CORS_ORIGIN_REGEX", r"^https://test-.*\.vercel\.app$")
+    settings = Settings()
+    assert settings.cors_origin_regex == r"^https://test-.*\.vercel\.app$"
+
+
+def test_settings_cors_origin_regex_defaults_to_none(monkeypatch):
+    monkeypatch.delenv("CORS_ORIGIN_REGEX", raising=False)
+    settings = Settings()
+    assert settings.cors_origin_regex is None

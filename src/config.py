@@ -33,6 +33,9 @@ class Settings(BaseSettings):
     llm_model_discovery: str = "gemini-flash-lite-latest"
 
     cors_origins_raw: str = Field(default="", alias="CORS_ORIGINS")
+    # Optional regex for platforms that mint a new origin per deploy (e.g. Vercel preview
+    # URLs). Example: ^https://test-.*\.vercel\.app$ covers every deployment of one project.
+    cors_origin_regex: str | None = Field(default=None, alias="CORS_ORIGIN_REGEX")
 
     model_config = {
         "env_file": ".env",
